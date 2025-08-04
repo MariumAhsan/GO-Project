@@ -1,16 +1,19 @@
 package main
 
-import (
-	"fmt"
-	"net/http"
-)
-
-func handler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Hello, your Go app is running!")
-}
+import "fmt"
 
 func main() {
-	http.HandleFunc("/", handler)
-	fmt.Println("Server started at http://localhost:8080")
-	http.ListenAndServe(":8080", nil)
+	var assets, liabilities, units float64
+
+	fmt.Print("Enter total assets: ")
+	fmt.Scanln(&assets)
+
+	fmt.Print("Enter total liabilities: ")
+	fmt.Scanln(&liabilities)
+
+	fmt.Print("Enter outstanding units: ")
+	fmt.Scanln(&units)
+
+	nav := (assets - liabilities) / units
+	fmt.Printf("Calculated NAV: %.4f\n", nav)
 }
